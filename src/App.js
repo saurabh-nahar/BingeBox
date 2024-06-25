@@ -18,8 +18,9 @@ function App() {
   ])
   return (
     <div className="App">
+      <Provider store={appStore}>
       <RouterProvider router={router}/>
-      <Provider store={appStore}/>
+      </Provider>
     </div>
   );
 }
