@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react";
 import { handleValidation } from "../utils/handleValidation";
 import Header from "./Header";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig";
+import { UseDispatch } from "react-redux";
 
 const Login = () => {
   const [signUp, setSignUp] = useState(false);
@@ -12,18 +13,39 @@ const Login = () => {
   const password = useRef(null);
   const name = useRef(null);
 
+  // const dispatch = UseDispatch();
+
   const handleLogin = (e) => {
-    setError(handleValidation(email.current.value, password.current.value))
-    createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+    const errorInValidation = handleValidation(email.current.value, password.current.value);
+    setError(errorInValidation)
+
+    if (error === null)
+    
+    if(signUp){
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setError(`${errorCode}: ${errorMessage}`)
+      });
+    }
+    if(!signUp){
+signInWithEmailAndPassword(auth, email.current.value, password.current.value)
   .then((userCredential) => {
-    const user = userCredential.user;
-    console.log(`Welcome to BingeBox ${user}`);
+    // Signed in 
+    // const user = userCredential.user;
+
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(errorMessage);
+    setError(`${errorCode}: ${errorMessage}`)
   });
+    }
     e.preventDefault()
   }
 
