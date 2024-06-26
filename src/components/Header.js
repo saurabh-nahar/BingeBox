@@ -4,7 +4,7 @@ import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addUser, removeUser } from "../userSlice";
+import { addUser, removeUser } from "../utils/userSlice";
 
 const Header = () => {
   const [userInformation, setUserInformation] = useState([]);

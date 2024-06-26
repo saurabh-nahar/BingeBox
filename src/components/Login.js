@@ -9,7 +9,7 @@ import {
 import { auth } from "../firebaseConfig";
 import { useDispatch } from "react-redux";
 import { profileUrl } from "../utils/constants";
-import { addUser } from "../userSlice";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [signUp, setSignUp] = useState(false);

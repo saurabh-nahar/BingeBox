@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/Login"
 import Browse from "./components/Browse"
 import { Provider } from "react-redux";
-import appStore from "./appStore"
+import appStore from "./utils/appStore"
 function App() {
 
   const router = createBrowserRouter([
