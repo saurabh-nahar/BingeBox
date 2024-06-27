@@ -6,17 +6,18 @@ import useNowPlayingMovies from '../utils/useNowPlayingMovies'
 import useNowPlayingMoviesTrailer from '../utils/useNowPlayingMoviesTrailer'
 import { useDispatch } from 'react-redux'
 import { addNowPlayingMovies, addNowPlayingMoviesTrailer } from '../utils/moviesSlice'
+import TitleDesc from './TitleDesc'
 
 const Browse = () => {
 
   const dispatch = useDispatch();
   const nowPlayingData = useNowPlayingMovies();
-  const firstMovieId = nowPlayingData ? nowPlayingData[2]?.id : null; 
+  const firstMovieId = nowPlayingData ? nowPlayingData[0]?.id : null; 
   const nowPlayingTrailer = useNowPlayingMoviesTrailer(firstMovieId);
 
   useEffect(()=>{
-    if(nowPlayingData !== null){
-      // console.log(nowPlayingData);
+    if(nowPlayingData && nowPlayingData.length > 0){
+      console.log(nowPlayingData);
       dispatch(addNowPlayingMovies(...nowPlayingData));
     }
   },[nowPlayingData])
@@ -30,8 +31,9 @@ const Browse = () => {
 
 
   return (
-    <div>
+    <div className='absolute'>
       <Header/>
+      <TitleDesc/>
       <NowPlayingTrailer/>
       <Categories/>
     </div>

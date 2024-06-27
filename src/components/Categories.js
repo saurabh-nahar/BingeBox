@@ -1,8 +1,11 @@
 import React from 'react'
+import NowPlaying from './NowPlaying'
 
 const Categories = () => {
   return (
-    <div>Categories</div>
+    <div>
+      <NowPlaying/>
+    </div>
   )
 }
 

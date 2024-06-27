@@ -51,7 +51,7 @@ const Header = () => {
 
   if(userInformation === []){
     return (
-      <div className="h-32 z-10 bg-gradient-to-b from-black to-transparent absolute top-0 w-full">
+      <div className="h-32 z-40 bg-gradient-to-b from-black to-transparent absolute top-0 w-full">
         <img src={logo} className="w-48 mt-6" alt="logo" />
       </div>
     );
@@ -60,12 +60,12 @@ const Header = () => {
     const {displayName, photoURL} = userInformation[0];
     console.log(displayName, photoURL);
     return (
-      <div className="h-24 z-10 bg-gradient-to-b from-black to-transparent absolute top-0 w-full flex justify-between">
+      <div className="h-24 z-40 bg-gradient-to-b from-black to-transparent absolute top-0 w-full flex justify-between">
         <img src={logo} className="w-48 h-full mt-6" alt="logo" />
         <div className='flex items-center'>
-        <img src={photoURL} alt="User Profile" className="w-12 mt-6 m-4"/>
-        <p className='m-4'>{displayName}</p>
-        <p className='m-4 cursor-pointer' onClick={handleSignOut}>Sign Out</p>
+        <img src={photoURL} alt="User Profile" className="w-10 mt-4 m-4"/>
+        <p className='m-4 text-white font-thin'>{displayName}</p>
+        <p className='m-4 cursor-pointer text-white font-thin' onClick={handleSignOut}>Sign Out</p>
         </div>
       </div>
     );
