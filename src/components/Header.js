@@ -5,6 +5,7 @@ import { auth } from '../firebaseConfig';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
+import {changeAiSearchButton} from "../utils/aiSearchSlice";
 
 const Header = () => {
   const [userInformation, setUserInformation] = useState([]);
@@ -13,6 +14,7 @@ const Header = () => {
 
   const navigate = useNavigate();
   const userDetails = useSelector((store)=> store.user.userInfo);
+  const searchBtn = useSelector((store) => store.aiSearch.aiSearchButton);
 
   useEffect(() => {
     if (userDetails.length !== 0) {
@@ -47,11 +49,20 @@ const Header = () => {
       // An error happened.
     });
   }
+  const handleAiSuggestions = () => {
+    if(searchBtn === false){
+      dispatch(changeAiSearchButton(true))
+    }
+    if(searchBtn === true){
+      dispatch(changeAiSearchButton(false))
+      navigate("/")
+    }
+  }
 
 
-  if(userInformation === []){
+  if(userInformation.length < 0){
     return (
-      <div className="h-32 z-40 bg-gradient-to-b from-black to-transparent absolute top-0 w-full">
+      <div className="w-[100vw] h-32 z-40 bg-gradient-to-b from-black to-transparent absolute top-0">
         <img src={logo} className="w-48 mt-6" alt="logo" />
       </div>
     );
@@ -60,9 +71,10 @@ const Header = () => {
     const {displayName, photoURL} = userInformation[0];
     console.log(displayName, photoURL);
     return (
-      <div className="h-24 z-40 bg-gradient-to-b from-black to-transparent absolute top-0 w-full flex justify-between">
+      <div className="h-24 z-40 bg-gradient-to-b from-black to-transparent absolute top-0 w-[100vw] flex justify-between">
         <img src={logo} className="w-48 h-full mt-6" alt="logo" />
         <div className='flex items-center'>
+          <button className='bg-green-100 p-2 rounded-lg' onClick={handleAiSuggestions}>{searchBtn === true ? "Home" : "Ai Search"  }</button>
         <img src={photoURL} alt="User Profile" className="w-10 mt-4 m-4"/>
         <p className='m-4 text-white font-thin'>{displayName}</p>
         <p className='m-4 cursor-pointer text-white font-thin' onClick={handleSignOut}>Sign Out</p>

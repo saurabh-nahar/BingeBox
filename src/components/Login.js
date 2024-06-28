@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebaseConfig";
 import { useDispatch } from "react-redux";
-import { profileUrl } from "../utils/constants";
+import { profileUrl, bg_Image } from "../utils/constants";
 import { addUser } from "../utils/userSlice";
 
 const Login = () => {
@@ -81,7 +81,7 @@ const Login = () => {
     <div className="relative h-screen w-full bg-black">
       <img
         className="absolute inset-0 w-full h-full object-cover opacity-70"
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/a56dc29b-a0ec-4f6f-85fb-50df0680f80f/ed3169bc-bae8-4c49-80ed-bab82d071166/CA-en-20240617-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+        src={bg_Image}
         alt="Background"
       />
       <Header />
