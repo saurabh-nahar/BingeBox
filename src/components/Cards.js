@@ -1,11 +1,16 @@
-import React from 'react'
-
-const Cards = ({poster}) => {
+import { cardImg } from "../utils/constants";
+const Cards = ({ poster, title }) => {
   return (
-    <div className='w-[20vw] h-[26vh] mx-4 rounded-lg hover:w-[30vw] hover:h-[39vh] '>
-      <img  src={`https://image.tmdb.org/t/p/w400/${poster}`} className='w-full h-full object-cover'></img>
+    <div className="relative overflow-visible">
+      <div className="relative h-[25vh] w-[200px] mx-2 rounded-lg">
+        <img
+          src={`${cardImg}${poster}`}
+          className="w-full h-full object-cover"
+          alt={title}
+        />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Cards
+export default Cards;
