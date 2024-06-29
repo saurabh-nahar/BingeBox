@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { options } from "./constants";
+import { tmdbVideosSearchExt, tmdbVideosSearch } from "./constants";
 
 const useNowPlayingMoviesTrailer = (movieId) => {
   const [nowPlayingMoviesTrailer, setNowPlayingMoviesTrailer] = useState(null);
@@ -7,7 +8,7 @@ const useNowPlayingMoviesTrailer = (movieId) => {
     const getData = async () => {
       if (!movieId) return;
       const data = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+        `${tmdbVideosSearch}${movieId}${tmdbVideosSearchExt}`,
         options
       );
       const json = await data.json();

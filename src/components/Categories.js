@@ -6,9 +6,9 @@ const Categories = () => {
   return (
     <div className="bg-black overflow-visible">
       <NowPlaying />
-      <div className="mt-40 bg-black overflow-visible">
+      {/* <div className="mt-40 bg-black overflow-visible">
         <PopularMovies />
-      </div>
+      </div> */}
     </div>
   );
 };

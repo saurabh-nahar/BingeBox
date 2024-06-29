@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { bg_Image } from "../utils/constants";
 import openai from "../openAiConfig";
-import { options } from "../utils/constants";
+import { options, searchUrl, searchUrlext } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
+import { langText } from "../utils/languageConstants";
 import {
   addAiSearchResults,
   removeAiSearchResults,
@@ -12,14 +13,13 @@ import Cards from "./Cards";
 const AiSearchPage = () => {
   const search = useRef(null);
 
+  const lang = useSelector((store) => store.langConfig.language);
+
   const dispatch = useDispatch();
   const searchReults = useSelector((store) => store.aiSearch.aiSearchResults);
 
   const fetchResults = async (result) => {
-    const data = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${result}&include_adult=false&page=1`,
-      options
-    );
+    const data = await fetch(`${searchUrl}${result}${searchUrlext}`, options);
     const json = await data.json();
     dispatch(addAiSearchResults(json.results[0]));
   };
@@ -56,12 +56,12 @@ const AiSearchPage = () => {
             onSubmit={(e) => handleSubmit(e)}
           >
             <input
-              placeholder="Ask ChatGPT for Suggestions"
+              placeholder={langText[lang].placeholder}
               ref={search}
               className="p-2 rounded bg-white bg-opacity-80 w-3/4"
             />
             <button className="ml-4 px-6 py-2 bg-red-700 text-white rounded">
-              Search
+              {langText[lang].search}
             </button>
           </form>
         </div>
@@ -74,6 +74,8 @@ const AiSearchPage = () => {
                 key={item.id}
                 poster={item.poster_path}
                 title={item.title}
+                id={item.id}
+                desc={item.overview}
               />
             ))}
           </div>

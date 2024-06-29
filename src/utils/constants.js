@@ -12,3 +12,15 @@ export const options = {
   },
 };
 export const cardImg = "https://image.tmdb.org/t/p/w400/";
+
+export const langOptions = [
+  { identifier: "en", name: "english" },
+  { identifier: "french", name: "français" },
+  { identifier: "hindi", name: "हिन्दी" },
+];
+
+export const searchUrl = "https://api.themoviedb.org/3/search/movie?query=";
+export const searchUrlext = "&include_adult=false&page=1";
+export const tmdbVideosSearch = 'https://api.themoviedb.org/3/movie/'
+export const tmdbVideosSearchExt = '/videos?language=en-US'
+

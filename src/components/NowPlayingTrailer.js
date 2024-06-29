@@ -11,7 +11,7 @@ const NowPlayingTrailer = () => {
       <div className="relative z-10 w-screen overflow-visible">
         <iframe
           className="w-screen aspect-video"
-          src={`https://www.youtube.com/embed/${key}?autoplay=1&mute=1`}
+          src={`https://www.youtube.com/embed/${key}?autoplay=1&mute=1&cc_load_policy=3`}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

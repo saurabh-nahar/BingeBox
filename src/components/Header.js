@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../logo.png";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebaseConfig";
@@ -6,15 +6,24 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { changeAiSearchButton } from "../utils/aiSearchSlice";
+import { langOptions } from "../utils/constants";
+import { changeLanguage } from "../utils/langConfigSlice";
+import SearchPage from "./SearchPage";
+import { options, searchUrl, searchUrlext } from "../utils/constants";
+import { addCachedresults } from "../utils/resultsSlice";
 
 const Header = () => {
   const [userInformation, setUserInformation] = useState([]);
+  const [focus, setFocus] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const userDetails = useSelector((store) => store.user.userInfo);
   const searchBtn = useSelector((store) => store.aiSearch.aiSearchButton);
+  const cachedResults = useSelector((store) => store.results.cachedResults);
 
   useEffect(() => {
     if (userDetails.length !== 0) {
@@ -25,19 +34,34 @@ const Header = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
-        // const uid = user.uid;
         const { displayName, photoURL, email, uid } = user;
         dispatch(addUser({ displayName, photoURL, email, uid }));
         navigate("/browse");
       } else {
-        // User is signed out
         navigate("/");
       }
     });
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (searchInput === "") return;
+    if (searchInput === cachedResults[searchInput]) {
+      setSearchResults(cachedResults[searchInput]);
+    }
+    const timer = setTimeout(() => searchApi(), 400);
+    return () => clearTimeout(timer);
+  }, [searchInput, focus]);
+
+  const searchApi = async () => {
+    const data = await fetch(
+      `${searchUrl}${searchInput}${searchUrlext}`,
+      options
+    );
+    const json = await data.json();
+    setSearchResults(json.results);
+    dispatch(addCachedresults({ searchInput, results: json.results }));
+  };
 
   const handleSignOut = () => {
     signOut(auth)
@@ -51,13 +75,18 @@ const Header = () => {
       });
   };
   const handleAiSuggestions = () => {
-    if (searchBtn === false) {
-      dispatch(changeAiSearchButton(true));
-    }
-    if (searchBtn === true) {
-      dispatch(changeAiSearchButton(false));
-      navigate("/");
-    }
+    searchBtn === false
+      ? dispatch(changeAiSearchButton(true))
+      : dispatch(changeAiSearchButton(false));
+    navigate("/");
+  };
+
+  const handleLangChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
+
+  const handleFocus = () => {
+    setFocus(true);
   };
 
   if (userInformation.length < 0) {
@@ -70,11 +99,34 @@ const Header = () => {
   if (userInformation.length !== 0) {
     const { displayName, photoURL } = userInformation[0];
     return (
-      <div className="h-24 z-40 bg-gradient-to-b from-black to-transparent absolute top-0 w-[100vw] flex justify-between">
-        <img src={logo} className="w-48 h-full mt-6" alt="logo" />
+      <div className="h-24 z-40 bg-gradient-to-b from-black to-transparent fixed top-0 w-[100vw] flex justify-between overflow-visible">
+        <img
+          src={logo}
+          className="w-48 h-full mt-6 cursor-pointer"
+          alt="logo"
+        />
         <div className="flex items-center">
+          <div className="mr-4">
+            <input
+              placeholder="Search Movies"
+              className="mr-4 p-2 rounded bg-white bg-opacity-80 w-full"
+              onFocus={handleFocus}
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
+          </div>
+          {searchBtn && (
+            <select
+              className="p-2 m-4 rounded-lg bg-red-600 text-black font-medium"
+              onChange={handleLangChange}
+            >
+              {langOptions.map((lang) => (
+                <option value={lang.identifier}>{lang.name}</option>
+              ))}
+            </select>
+          )}
           <button
-            className="bg-chatGPT p-2 rounded-lg"
+            className="bg-chatGPT p-2 rounded-lg font-medium"
             onClick={handleAiSuggestions}
           >
             {searchBtn === true ? "Home" : "Ai Search"}
@@ -88,6 +140,11 @@ const Header = () => {
             Sign Out
           </p>
         </div>
+        <>
+          {searchResults.length !== 0 && focus === true ? (
+            <SearchPage focus={() => setFocus(false)} results={searchResults} />
+          ) : null}
+        </>
       </div>
     );
   }
