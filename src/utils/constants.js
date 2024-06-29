@@ -23,4 +23,4 @@ export const searchUrl = "https://api.themoviedb.org/3/search/movie?query=";
 export const searchUrlext = "&include_adult=false&page=1";
 export const tmdbVideosSearch = 'https://api.themoviedb.org/3/movie/'
 export const tmdbVideosSearchExt = '/videos?language=en-US'
-
+export const popularMoviesUrl = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';

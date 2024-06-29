@@ -12,7 +12,7 @@ const Cards = ({ poster, title, id, desc }) => {
   if (poster)
     return (
       <div className="relative overflow-visible my-6">
-        <div className="relative h-[25vh] w-[200px] mx-2 rounded-lg">
+        <div className="relative h-[25vh] w-[150px] mx-2 rounded-lg">
           <img
             src={`${cardImg}${poster}`}
             className="w-full h-full object-cover cursor-pointer"

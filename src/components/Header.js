@@ -74,6 +74,12 @@ const Header = () => {
         // An error happened.
       });
   };
+
+  const handleLogoClick = () => {
+    if(searchBtn === true)
+    dispatch(changeAiSearchButton(false));
+    navigate("/");
+  }
   const handleAiSuggestions = () => {
     searchBtn === false
       ? dispatch(changeAiSearchButton(true))
@@ -91,7 +97,7 @@ const Header = () => {
 
   if (userInformation.length < 0) {
     return (
-      <div className="w-[100vw] h-32 z-40 bg-gradient-to-b from-black to-transparent absolute top-0">
+      <div className="w-[100vw] h-32 z-40 bg-gradient-to-b from-black to-transparent fixed top-0">
         <img src={logo} className="w-48 mt-6" alt="logo" />
       </div>
     );
@@ -104,6 +110,7 @@ const Header = () => {
           src={logo}
           className="w-48 h-full mt-6 cursor-pointer"
           alt="logo"
+          onClick={handleLogoClick}
         />
         <div className="flex items-center">
           <div className="mr-4">

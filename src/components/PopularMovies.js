@@ -1,22 +1,25 @@
-import { useSelector } from "react-redux";
 import Cards from "./Cards";
 
-const PopularMovies = () => {
-  const nowPlayingList = useSelector(
-    (store) => store.movies.nowPlayingMovies[0]
-  );
+const PopularMovies = ({popularMoviesData}) => {
 
-  if (nowPlayingList && nowPlayingList.length > 0) {
+
     return (
-      <div className="relative z-20 flex bg-black overflow-x-scroll">
-        {nowPlayingList.map((item) => (
-          <div key={item.id} className="flex">
-            <Cards poster={item.poster_path} />
+      <>
+      <h1 className="relative z-20 text-white mx-6 text-3xl font-semibold ">Top Rated</h1>
+      <div className=" relative z-20 flex bg-black overflow-x-scroll px-4 space-x-4">
+        {popularMoviesData.map((item) => (
+          <div key={item.id} className="">
+            <Cards
+              poster={item.poster_path}
+              title={item.title}
+              id={item.id}
+              desc={item.overview}
+            />
           </div>
         ))}
       </div>
+      </>
     );
-  }
 };
 
 export default PopularMovies;
