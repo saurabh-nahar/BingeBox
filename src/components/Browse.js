@@ -11,6 +11,7 @@ import {
 } from "../utils/moviesSlice";
 import TitleDesc from "./TitleDesc";
 import AiSearchPage from "./AiSearchPage";
+import Footer from "./Footer";
 
 const Browse = () => {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ const Browse = () => {
           <TitleDesc />
           <NowPlayingTrailer />
           <Categories />
+          <Footer/>
         </>
       )}
     </div>

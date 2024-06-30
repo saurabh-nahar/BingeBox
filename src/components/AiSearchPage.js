@@ -45,7 +45,7 @@ const AiSearchPage = () => {
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
       <img
-        className="fixed top-0 h-screen object-cover opacity-70"
+        className="fixed top-0 h-screen w-screen object-cover md:object-none opacity-70"
         src={bg_Image}
         alt="Background"
       />

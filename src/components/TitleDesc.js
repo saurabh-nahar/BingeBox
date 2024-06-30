@@ -6,7 +6,7 @@ const TitleDesc = () => {
 
   if (data)
     return (
-      <div className="absolute z-20 w-full h-full bg-gradient-to-r from-black/60 via-black/30 to-transparent">
+      <div className="absolute z-10 w-screen h-screen bg-gradient-to-r from-black/60 via-black/30 to-transparent">
         <h2 className=" mt-[8vh] md:mt-[30vh] sm:mt-[20vh] mx-2 md:mx-6 lg:text-4xl md:text-2xl text-xl font-semibold font text-white">
           {data[0].original_title}
         </h2>
