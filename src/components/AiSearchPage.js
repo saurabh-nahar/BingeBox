@@ -45,12 +45,12 @@ const AiSearchPage = () => {
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
       <img
-        className="relative top-0 w-[vw] h-[vh] object-fill opacity-70"
+        className="fixed top-0 h-screen object-cover opacity-70"
         src={bg_Image}
         alt="Background"
       />
-      <div className="absolute top-[25vh] z-10 flex items-center justify-center w-full ">
-        <div className="bg-black bg-opacity-80 p-8 rounded-md w-2/4">
+      <div className="absolute top-[25vh] z-10 flex items-center justify-center w-full">
+        <div className="bg-black bg-opacity-80 p-8 rounded-md lg:w-2/4 w-full">
           <form
             className="flex justify-center"
             onSubmit={(e) => handleSubmit(e)}
@@ -68,7 +68,7 @@ const AiSearchPage = () => {
       </div>
       {searchReults && (
         <div className="absolute top-[50vh] z-10 flex justify-center w-full">
-          <div className="flex flex-wrap justify-center space-x-4">
+          <div className="px-6 flex flex-nowrap lg:flex-wrap lg:justify-center md:overflow-x-scroll overflow-x-scroll space-x-4">
             {searchReults.map((item) => (
               <Cards
                 key={item.id}

@@ -8,7 +8,7 @@ const NowPlayingTrailer = () => {
 
   if (key) {
     return (
-      <div className="relative z-10 w-screen overflow-visible">
+      <div className="relative z-10 w-screen overflow-visible lg:mt-0 md:mt-0 mt-8">
         <iframe
           className="w-screen aspect-video"
           src={`https://www.youtube.com/embed/${key}?autoplay=1&mute=1&cc_load_policy=3`}

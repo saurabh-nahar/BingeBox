@@ -23,6 +23,7 @@ const Categories = () => {
     <div className="bg-black overflow-visible">
       <NowPlaying />
       {popularMoviesData && <PopularMovies popularMoviesData={popularMoviesData} />}
+      {popularMoviesData && <PopularMovies popularMoviesData={popularMoviesData} />}
     </div>
   );
 };

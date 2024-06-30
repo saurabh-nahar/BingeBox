@@ -12,7 +12,7 @@ const Cards = ({ poster, title, id, desc }) => {
   if (poster)
     return (
       <div className="relative overflow-visible my-6">
-        <div className="relative h-[25vh] w-[150px] mx-2 rounded-lg">
+        <div className="relative md:h-[25vh] w-[150px] md:w-[200px] mx-2 rounded-lg">
           <img
             src={`${cardImg}${poster}`}
             className="w-full h-full object-cover cursor-pointer"
@@ -21,13 +21,15 @@ const Cards = ({ poster, title, id, desc }) => {
           />
         </div>
         {showPopup && (
-          <TrailerPopUp
+          <div className="fixed top-0 left-0 z-50">
+            <TrailerPopUp
             poster={poster}
             title={title}
             id={id}
             desc={desc}
             onClose={() => setShowPopup(false)}
           />
+          </div>
         )}
       </div>
     );

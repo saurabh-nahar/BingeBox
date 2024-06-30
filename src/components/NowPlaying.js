@@ -11,8 +11,8 @@ const NowPlaying = () => {
   if (nowPlayingList && nowPlayingList.length > 0) {
     return (
       <>
-      <h1 className="absolute z-20 -mt-6  text-white mx-6 text-3xl font-semibold ">Now Playing</h1>
-      <div className="relative flex overflow-x-auto px-4 space-x-4 z-20 -mt-52 overflow-visible">
+      <h1 className="absolute z-20 -mt-6  text-white mx-2 md:mx-6 text-xl md:text-3xl font-semibold ">Now Playing</h1>
+      <div className="relative flex overflow-x-auto px-2 md:px-4 md:space-x-4 z-20 mt-0 md:-mt-72 overflow-visible">
         {nowPlayingList.map((item) => (
           <div key={item.id} className="">
             <Cards

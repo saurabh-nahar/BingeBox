@@ -85,7 +85,7 @@ const Login = () => {
       />
       <Header />
       <div className="relative z-20 flex items-center justify-center h-full">
-        <div className=" bg-black bg-opacity-80 p-8 rounded w-1/4">
+        <div className=" bg-black bg-opacity-80 p-8 rounded w-3/4 lg:w-1/4 md:w-2/4 ">
           {!signUp ? (
             <h3 className="text-white text-3xl pl-12">Sign In</h3>
           ) : (
@@ -138,7 +138,7 @@ const Login = () => {
                 onClick={handleSignUp}
                 className="text-gray-400 p-4 cursor-pointer"
               >
-                New to BingeBox? Sign Up Now.
+                New to BingeBox? Sign Up!
               </p>
             ) : (
               <p
