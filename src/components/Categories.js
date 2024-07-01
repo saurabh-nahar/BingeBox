@@ -14,7 +14,6 @@ const Categories = () => {
         const data = await fetch(popularMoviesUrl, options);
         const json = await data.json();
         setPopularMoviesData(json.results);
-        console.log(json.results);
       } catch (err) {
         console.log(err);
       }
@@ -27,7 +26,6 @@ const Categories = () => {
         const data = await fetch(upcomingMoviesUrl, options);
         const json = await data.json();
         setUpcomingMoviesData(json.results);
-        console.log(json.results);
       } catch (err) {
         console.log(err);
       }

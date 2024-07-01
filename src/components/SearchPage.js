@@ -6,7 +6,7 @@ const SearchPage = ({ focus, results }) => {
     focus();
   };
   return (
-    <div className="fixed top-24 z-50 w-full h-full bg-black">
+    <div className="fixed top-24 z-50 w-full h-full bg-black overflow-y-auto">
       <button
         onClick={handleFocus}
         className="fixed top-24 p-4 right-10 cursor-pointer text-white"

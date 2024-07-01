@@ -6,8 +6,6 @@ const NowPlaying = () => {
     (store) => store.movies.nowPlayingMovies[0]
   );
 
-  console.log(nowPlayingList);
-
   if (nowPlayingList && nowPlayingList.length > 0) {
     return (
       <>
