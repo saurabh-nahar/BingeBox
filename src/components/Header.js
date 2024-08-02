@@ -113,7 +113,7 @@ const Header = () => {
           onClick={handleLogoClick}
         />
         <div className="flex items-center justify-center w-full lg:w-auto flex-wrap lg:flex-nowrap">
-        <div className="lg:hidden md:hidden flex justify-center items-center w-full h-8 bg-black">
+        <div className="lg:hidden md:hidden flex justify-center items-center w-full h-10 bg-black">
         <img
           src={logo}
           className="w-36 mt-28 mb-2 cursor-pointer"
