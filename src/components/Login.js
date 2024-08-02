@@ -96,7 +96,7 @@ const Login = () => {
               <input
                 ref={name}
                 placeholder="Name"
-                className="mt-6 p-4 w-3/4 rounded-sm bg-gray-500 bg-opacity-40"
+                className="mt-6 p-4 w-3/4 rounded-sm bg-gray-500 text-white bg-opacity-40"
                 type={"text"}
                 name="name"
               />
@@ -104,14 +104,14 @@ const Login = () => {
             <input
               ref={email}
               placeholder="Email"
-              className="mt-6 p-4 w-3/4 rounded-sm bg-gray-500 bg-opacity-40"
+              className="mt-6 p-4 w-3/4 rounded-sm bg-gray-500 text-white bg-opacity-40"
               type={"text"}
               name="email"
             />
             <input
               ref={password}
               placeholder="Password"
-              className="mt-6 p-4 w-3/4 rounded-sm bg-gray-500 bg-opacity-40"
+              className="mt-6 p-4 w-3/4 rounded-sm bg-gray-500 text-white bg-opacity-40"
               type={"password"}
               name="password"
             />
